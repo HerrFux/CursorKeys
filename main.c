@@ -49,6 +49,7 @@ int main(void)
     int velocity = 0;
     const int startingVelocity = 1;
     const int acceleration = 1;
+    const int velocityLimit = 32;
 
     while (1) /* TODO: PUT EXCEPTION HERE */
     {
@@ -75,7 +76,16 @@ int main(void)
 
                 xDiff = 0;
                 yDiff = 0;
-                velocity += acceleration;
+
+                if (velocity != velocityLimit)
+                {
+                    velocity += acceleration;
+                    
+                    if (velocity > velocityLimit)
+                    {
+                        velocity = velocityLimit;
+                    }
+                }
             }
             else /* if getting the cursor position failed */
             {
